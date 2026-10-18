@@ -1,6 +1,6 @@
 
 import { equal } from '@bhbr/egalite'
-import { isInstanceOf } from '@bhbr/upper-class'
+import { isInstanceOf, ancestry } from '@bhbr/upper-class'
 import { remove } from '@bhbr/betray'
 import { ClassDeclaration } from './ClassDeclaration.js'
 import { AssignmentError } from './Errors.js'
@@ -138,8 +138,7 @@ A property can have one of five mutability levels:
 	}
 
 	ancestry(): Array<string> {
-	// for debugging
-		return this.prototypes().map((obj) => obj.constructor.name)
+		return ancestry(this)
 	}
 
 	isInstanceOf(cls: string): boolean {
