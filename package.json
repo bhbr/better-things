@@ -3,19 +3,17 @@
   "version": "1.0.1",
   "description": "A generic class BetterObject for safer subclassing",
   "type": "module",
-  "main": "./dist/better-things.js",
-  "types": "./dist/better-things.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/better-things.d.ts",
-      "import": "./dist/better-things.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     }
   },
   "files": [
-    "dist/*.js",
-    "dist/*.d.ts",
-    "dist/*.js.map",
-    "dist/*.d.ts.map"
+    "dist/",
+    "!dist/_tests/"
   ],
   "scripts": {
     "build": "cd build && ./build.sh",
@@ -38,6 +36,7 @@
   },
   "dependencies": {
     "@bhbr/betray": "^1.0.0",
+    "@bhbr/copycat": "^1.0.0",
     "@bhbr/egalite": "^1.1.4"
   }
 }

@@ -823,7 +823,7 @@ let Changing_mutability_and_default_values_in_subclass = new BundledTest({
 		}),
 
 		new ValueTest({
-			name: 'A_settable_property_can_become_subclassable_in_subclass',
+			name: 'A settable property can become subclassable in subclass',
 			function: function(): string {
 				BetterObject.clearClassDeclarations()
 				class SecondClass extends FirstClass {
