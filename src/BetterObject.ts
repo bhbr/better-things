@@ -279,6 +279,10 @@ A property can have one of five mutability levels:
 		return (this.mutability(prop) === 'always')
 	}
 
+	isUpdatable(prop: string) {
+		return (this.mutability(prop) === 'always' || this.mutability(prop) === 'on_update')
+	}
+
 	synchronizeUpdateArguments(args: object): object {
 	/*
 	Override this method to resolve possible conflicts in update arguments.
@@ -339,6 +343,7 @@ A property can have one of five mutability levels:
 	copyFrom(obj: BetterObject) {
 		let argsDict: object = {}
 		for (let prop of obj.properties) {
+			if (!this.isUpdatable(prop)) { continue }
 			argsDict[prop] = obj[prop]
 		}
 		this.update(argsDict)

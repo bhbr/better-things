@@ -35,6 +35,33 @@ class FirstClass extends BetterObject {
 
 }
 
+/////////////////////////////////
+// BASIC OBJECT CREATION TESTS //
+/////////////////////////////////
+
+
+
+let Basic_object_creation_tests = new BundledTest({
+	name: 'Basic object creation tests',
+	silenceSubtests: false,
+	subtests: [
+
+		new ExecutionTest({
+			name: 'A BetterObject can be instantiated with no arguments',
+			function: function() {
+				let obj = new BetterObject()
+			}
+		}),
+
+		new ExecutionTest({
+			name: 'A subclass BetterObject can be instantiated with no arguments',
+			function: function() {
+				let obj = new FirstClass()
+			}
+		}),
+	]
+})
+
 
 /////////////////////////////////////////
 // BASIC DEFAULTS AND MUTABILITY TESTS //
@@ -980,11 +1007,31 @@ export const An_immutable_property_can_be_added_in_a_subclass = new AssertionTes
 
 
 
+////////////////////////////////////////
+// COPYING FROM ONE OBJECT TO ANOTHER //
+////////////////////////////////////////
+
+export const The_properties_of_one_object_can_be_copied_to_another = new AssertionTest({
+	name: 'The properties of one object can be copied to another',
+	function: function(): boolean {
+		let A1 = new FirstClass()
+		let A2 = new FirstClass({
+			genericallySettableProperty: 100,
+			settableProperty: 200,
+			updatableProperty: 300
+		})
+		A1.copyFrom(A2)
+		return (A1.genericallySettableProperty == 100)
+			&& (A1.settableProperty == 200)
+			&& (A1.updatableProperty == 300)
+	}
+})
 
 
 export const betterObjectTest = new BundledTest({
 	name: 'BetterObject test',
 	subtests: [
+		Basic_object_creation_tests,
 		Basic_defaults_and_mutability_tests,
 		Setting_property_values_after_object_creation,
 		Updating_property_values_after_object_creation,
@@ -992,7 +1039,8 @@ export const betterObjectTest = new BundledTest({
 		Changing_property_values_in_a_subclass,
 		Changing_mutability_and_default_values_in_subclass,
 		An_immutable_property_can_be_added_in_a_subclass,
-		A_trivial_subclass_gets_registered_in_the_ancestry
+		A_trivial_subclass_gets_registered_in_the_ancestry,
+		The_properties_of_one_object_can_be_copied_to_another
 	],
 	silenceSubtests: false
 })
