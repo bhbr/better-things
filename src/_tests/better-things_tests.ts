@@ -1027,6 +1027,20 @@ export const The_properties_of_one_object_can_be_copied_to_another = new Asserti
 	}
 })
 
+export const Dummy_test = new ExecutionTest({
+	name: 'Dummy',
+	function: function() {
+		class Dummy extends BetterObject {
+			angle: number
+			defaults(): object {
+				return {
+					angle: 0
+				}
+			}
+		}
+		let d = new Dummy()
+	}
+})
 
 export const betterObjectTest = new BundledTest({
 	name: 'BetterObject test',
@@ -1040,7 +1054,8 @@ export const betterObjectTest = new BundledTest({
 		Changing_mutability_and_default_values_in_subclass,
 		An_immutable_property_can_be_added_in_a_subclass,
 		A_trivial_subclass_gets_registered_in_the_ancestry,
-		The_properties_of_one_object_can_be_copied_to_another
+		The_properties_of_one_object_can_be_copied_to_another,
+		Dummy_test
 	],
 	silenceSubtests: false
 })
